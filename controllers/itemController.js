@@ -18,4 +18,12 @@ exports.item_detail = asyncHandler(async(req,res,next)=>{
         item: item,
     });
 
+});
+exports.item_create_get = asyncHandler(async(req,res,next)=>{
+    const categories = await Category.find().exec();
+
+    res.render("item_form",{
+        title: "Add item",
+        categories:categories,
+    });
 })

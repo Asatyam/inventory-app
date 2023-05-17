@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 Item: #{item.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+  p(style='white-space:pre;')
+   | Description = #{item.description} 
+   | Available Stock = #{item.available}
+   | Price = #{item.price}  
+   | Category = 
+   a(href= item.category.url) #{item.category.name}
+
+
+  p 
+    a(href=item.url+'/delete') Delete item
+  p
+    a(href=item.url+'/update') Update item  
