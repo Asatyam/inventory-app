@@ -53,11 +53,10 @@ async function itemCreate(name,description,available,price,category) {
 
 async function createCategories() {
   console.log('Adding categories');
-  await Promise.all([
-    categoryCreate('smartphones', 'You can see the all the smartphones'),
-    categoryCreate('laptops', 'You can see the all the laptops'),
-    categoryCreate('earphones', 'You can see the all the earphones'),
-  ]);
+  await categoryCreate('smartphones', 'You can see the all the smartphones');
+  await categoryCreate('laptops', 'You can see the all the laptops');
+  await categoryCreate('earphones', 'You can see the all the earphones');
+
 }
 
 

@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+.category-list{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+.category-list li{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
