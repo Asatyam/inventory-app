@@ -1,7 +1,9 @@
 extends layout
 
 block content
-
+  
+  p  
+    a(href="/") Home
   h1 Category: #{category.name}
   p= category.description
 
@@ -18,6 +20,7 @@ block content
       else
         p This category has no items.
   hr
+
   p 
     a(href=category.url+'/update') Update Category
   p

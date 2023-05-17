@@ -93,6 +93,42 @@ exports.category_update_get = asyncHandler(async (req, res, next) => {
   res.render('category_form', { title: 'Update Category', category: category });
 });
 
+exports.category_update_post = [
+  body('name', 'Name must be specified').trim().isLength({ min: 1 }).escape(),
+
+  body('description', 'Description must be given')
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    const category = new Category({
+      name: req.body.name,
+      description: req.body.description,
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render('category_form', {
+        title: 'Update Category',
+        category: category,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      const categoryExists = await Category.findOne({
+        name: req.body.name,
+      }).exec();
+      if (categoryExists) {
+        res.redirect(categoryExists.url);
+      } else {
+        await Category.findByIdAndUpdate(req.params.id, category);
+        res.redirect(category.url);
+      }
+    }
+  }),
+];
+
 exports.category_detail = asyncHandler(async(req,res,next)=>{
     const [category,allItemsInCategory] = await Promise.all([
         Category.findById(req.params.id).exec(),
