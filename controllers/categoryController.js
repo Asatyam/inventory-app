@@ -54,13 +54,31 @@ exports.category_delete_get = asyncHandler(async(req,res,next)=>{
         Item.find({category: req.params.id},"name description").exec(),
     ]);
     if(category === null){
-        res.redirect('/catalog/categories');
+        res.redirect('/');
     }
     res.render("category_delete",{
         title:"Delete Category",
         category:category,
         category_items: allItemsInCategory,
     });
+});
+exports.category_delete_post = asyncHandler(async(req,res,next)=>{
+     const [category, allItemsInCategory] = await Promise.all([
+       Category.findById(req.params.id).exec(),
+       Item.find({ category: req.params.id }, 'name description').exec(),
+     ]);
+
+     if(allItemsInCategory.length>0){
+        res.render('category_delete',{
+            title:"Delete Category",
+            category: category,
+            category_items: allItemsInCategory
+        });
+        return;
+     } else{
+        await Category.findByIdAndRemove(req.body.categoryid);
+        res.redirect("/");
+     }
 });
 
 exports.category_detail = asyncHandler(async(req,res,next)=>{
