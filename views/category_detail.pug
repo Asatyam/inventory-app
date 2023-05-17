@@ -13,14 +13,10 @@ block content
       each item in category_items
         dt
           a(href=item.url) #{item.name}
-        dd #{item.description}
+
 
       else
-        p This category has no items
+        p This category has no items.
   hr
-  p 
-    a(href='/item/create') Add more #{category.name}
   p
-    a(href=category.url +'/update') Update
-  p
-    a(href=category.url+'/delete') Delete Category
+    a(href=category.url+'/delete') Delete category

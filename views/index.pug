@@ -7,7 +7,7 @@ block content
   ul.category-list
     each category in categories_list 
       li
-        a(href=category.url)= category.name
+        a(href=category.url)= category.name[0].toUpperCase()+category.name.slice(1)
         
   
 
