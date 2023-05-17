@@ -21,7 +21,7 @@ block content
       textarea#description.form-control(type='textarea', placeholder='Description' name='description' required='true') #{undefined===item ? '' : item.description}
     div.form-group
       label(for='available') Available Quantity:
-      input#available.form-control(type='number', placeholder='Available' name='available' value=(undefined===item ? '' : item.available) required='true')
+      input#available.form-control(type='number', placeholder='Available' name='available' value=(undefined===item ? '' : item.available))
     div.form-group
       label(for='price') Price:
       input#price.form-control(type='number', placeholder='price' name='price' value=(undefined===item ? '' : item.price) required='true')
