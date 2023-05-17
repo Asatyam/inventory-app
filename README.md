@@ -1,0 +1,2 @@
+This is an built using express. It is inspired from express-local-library tutorial on MDN. It has a list of categories and each categories have some item. You can perform CRUD operations on all the categories and the items. 
+The front-end is bare minimum as the focus was on building the  backend.
